@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">EldenBank</string>
+    <string name="title">Elden Bank</string>
+    <string name="subtitle">Don\'t loose your runes!</string>
+    <string name="checkRunes">Check your Runes</string>
+    <string name="checkRunesMessage"> </string>
+    <string name="depositRunes">Deposit Runes</string>
+    <string name="depositRunesMessage"> </string>
+    <string name="withdrawRunes">Withdraw Runes</string>
+    <string name="withdrawRunesMessage"> </string>
+    <string name="exit">Leave</string>
+    <string name="exitMessage"> </string>
 </resources>
