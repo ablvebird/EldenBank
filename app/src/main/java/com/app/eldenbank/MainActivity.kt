@@ -10,6 +10,7 @@ class MainActivity : AppCompatActivity() {
     //User Data
     private var runeBalance: Int = 10000
     private var userInput: Int = 0
+    private var isDeposit: Boolean? = null
 
     //GUI Elements
     private val inputBox:EditText = findViewById(R.id.runesEditText)
@@ -26,37 +27,48 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkRunes() {
-        showToast("Checking Runes: Current Balance - $runeBalance")
+        showToast("Checking your runes: Current Balance - $runeBalance")
     }
 
     private fun depositRunes() {
-        /*  1) Make inputBox and submit button visible
-            2) Receive the user input and stores in variable
-            3) Adds the amount to the current runes
-         */
-        openInput()
-
         runeBalance += userInput
         showToast("Deposited $userInput Runes. Current Balance - $runeBalance")
     }
 
     private fun withdrawRunes() {
-        if (runeBalance >= 10) {
-            runeBalance -= 10
-            showToast("Withdrawn $userInput Runes. Current Balance - $runeBalance")
+        if (runeBalance >= userInput) {
+            runeBalance -= userInput
+            showToast("Withdrawing $userInput runes. Current Balance - $runeBalance")
         } else {
-            showToast("Insufficient Runes for withdrawal.")
+            showToast("You so poor lol. Get lost.")
         }
     }
 
-    private fun openInput(){
-        inputBox.visibility = View.VISIBLE
-        submitButton.visibility = View.VISIBLE
-        inputBox.requestFocus()
+    private fun handleSubmit(){
+        val rawInput: String = inputBox.toString()
+        userInput = rawInput.toInt()
+
+        if (isDeposit!!){
+            depositRunes()
+        }
+
+        else {
+            withdrawRunes()
+        }
+
+        displayInput()
     }
 
-    private fun handleInput(){
-
+    private fun displayInput(){
+        if (inputBox.visibility == View.INVISIBLE){
+            inputBox.visibility = View.VISIBLE
+            submitButton.visibility = View.VISIBLE
+            inputBox.requestFocus()
+        }
+        else if (inputBox.visibility == View.VISIBLE){
+            inputBox.visibility = View.INVISIBLE
+            submitButton.visibility = View.INVISIBLE
+        }
     }
 
     private fun setListeners(){
@@ -64,16 +76,18 @@ class MainActivity : AppCompatActivity() {
             checkRunes()
         }
         depositButton.setOnClickListener {
-            depositRunes()
+            isDeposit = true
+            displayInput()
         }
         withdrawButton.setOnClickListener {
-            withdrawRunes()
+            isDeposit = false
+            displayInput()
+        }
+        submitButton.setOnClickListener{
+            handleSubmit()
         }
         exitButton.setOnClickListener {
             exitApp()
-        }
-        submitButton.setOnClickListener{
-
         }
     }
 
