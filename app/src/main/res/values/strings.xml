@@ -8,6 +8,7 @@
     <string name="depositRunesMessage"> </string>
     <string name="withdrawRunes">Withdraw Runes</string>
     <string name="withdrawRunesMessage"> </string>
+    <string name="submit">Submit</string>
     <string name="exit">Leave</string>
     <string name="exitMessage"> </string>
 </resources>

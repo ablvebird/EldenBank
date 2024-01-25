@@ -67,6 +67,7 @@
         android:backgroundTintMode="add"
         android:text="@string/exit"
         android:textColor="#E0D4B6"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/depositButton" />
@@ -77,11 +78,13 @@
         android:layout_height="84dp"
         android:layout_marginTop="240dp"
         android:layout_marginEnd="64dp"
+        android:autoSizeTextType="none"
         android:backgroundTint="#372D1F"
         android:text="@string/checkRunes"
         android:textColor="#E0D4B6"
         android:textColorHighlight="@color/black"
         android:textColorLink="#FAF6F6"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/depositButton"
         app:layout_constraintTop_toBottomOf="@+id/subtitle" />
 
@@ -94,6 +97,7 @@
         android:backgroundTint="#372D1F"
         android:text="@string/withdrawRunes"
         android:textColor="#E0D4B6"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/depositButton"
         app:layout_constraintTop_toBottomOf="@+id/subtitle" />
 
@@ -105,6 +109,7 @@
         android:backgroundTint="#372D1F"
         android:text="@string/depositRunes"
         android:textColor="#E0D4B6"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -120,6 +125,19 @@
         app:layout_constraintBottom_toTopOf="@+id/depositButton"
         app:layout_constraintEnd_toEndOf="@+id/background"
         app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintTop_toBottomOf="@+id/subtitle"
+        tools:visibility="invisible" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:backgroundTint="#372D1F"
+        android:text="@string/submit"
+        android:textColor="#E0D4B6"
+        app:layout_constraintBottom_toTopOf="@+id/withdrawButton"
+        app:layout_constraintStart_toEndOf="@+id/runesEditText"
         app:layout_constraintTop_toBottomOf="@+id/subtitle"
         tools:visibility="invisible" />
 
