@@ -85,8 +85,12 @@
         android:textColorHighlight="@color/black"
         android:textColorLink="#FAF6F6"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/exitButton"
         app:layout_constraintEnd_toStartOf="@+id/depositButton"
-        app:layout_constraintTop_toBottomOf="@+id/subtitle" />
+        app:layout_constraintHorizontal_bias="0.893"
+        app:layout_constraintStart_toStartOf="@+id/background"
+        app:layout_constraintTop_toBottomOf="@+id/subtitle"
+        app:layout_constraintVertical_bias="0.007" />
 
     <Button
         android:id="@+id/withdrawButton"
@@ -98,8 +102,12 @@
         android:text="@string/withdrawRunes"
         android:textColor="#E0D4B6"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/exitButton"
+        app:layout_constraintEnd_toEndOf="@+id/background"
+        app:layout_constraintHorizontal_bias="0.066"
         app:layout_constraintStart_toEndOf="@+id/depositButton"
-        app:layout_constraintTop_toBottomOf="@+id/subtitle" />
+        app:layout_constraintTop_toBottomOf="@+id/subtitle"
+        app:layout_constraintVertical_bias="0.007" />
 
     <Button
         android:id="@+id/depositButton"
@@ -122,6 +130,8 @@
         android:autofillHints="Enter your runes here"
         android:ems="10"
         android:inputType="number"
+        android:textColor="#E0D4B6"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/depositButton"
         app:layout_constraintEnd_toEndOf="@+id/background"
         app:layout_constraintStart_toStartOf="@+id/background"
@@ -132,13 +142,13 @@
         android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
         android:backgroundTint="#372D1F"
         android:text="@string/submit"
         android:textColor="#E0D4B6"
         app:layout_constraintBottom_toTopOf="@+id/withdrawButton"
         app:layout_constraintStart_toEndOf="@+id/runesEditText"
         app:layout_constraintTop_toBottomOf="@+id/subtitle"
+        app:layout_constraintVertical_bias="0.497"
         tools:visibility="invisible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
