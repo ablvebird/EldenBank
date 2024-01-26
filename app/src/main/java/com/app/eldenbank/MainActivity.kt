@@ -12,29 +12,43 @@ class MainActivity : AppCompatActivity() {
     private var userInput: Int = 0
     private var isDeposit: Boolean? = null
 
-    //GUI Elements
-    private val inputBox:EditText = findViewById(R.id.runesEditText)
-    private val checkButton: Button = findViewById(R.id.checkButton)
-    private val depositButton: Button = findViewById(R.id.depositButton)
-    private val withdrawButton: Button = findViewById(R.id.withdrawButton)
-    private val exitButton: Button = findViewById(R.id.exitButton)
-    private val submitButton: Button = findViewById(R.id.submitButton)
+    // GUI Elements
+    private lateinit var inputBox: EditText
+    private lateinit var checkButton: Button
+    private lateinit var depositButton: Button
+    private lateinit var withdrawButton: Button
+    private lateinit var exitButton: Button
+    private lateinit var submitButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initGUI()
         setListeners()
     }
 
+    // Initialize UI elements after setContentView
+    private fun initGUI(){
+        inputBox = findViewById(R.id.runesEditText)
+        checkButton = findViewById(R.id.checkButton)
+        depositButton = findViewById(R.id.depositButton)
+        withdrawButton = findViewById(R.id.withdrawButton)
+        exitButton = findViewById(R.id.exitButton)
+        submitButton = findViewById(R.id.submitButton)
+    }
+
+    //Checks balance
     private fun checkRunes() {
         showToast("Checking your runes: Current Balance - $runeBalance")
     }
 
+    //Adds runes to balance
     private fun depositRunes() {
         runeBalance += userInput
         showToast("Deposited $userInput Runes. Current Balance - $runeBalance")
     }
 
+    //Withdraw runes
     private fun withdrawRunes() {
         if (runeBalance >= userInput) {
             runeBalance -= userInput
@@ -44,21 +58,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //Method for submitting the user input
     private fun handleSubmit(){
-        val rawInput: String = inputBox.toString()
-        userInput = rawInput.toInt()
+        val rawInput: String = inputBox.text.toString()
 
-        if (isDeposit!!){
-            depositRunes()
+        // Check if input is not empty
+        if (rawInput.isNotEmpty()) {
+            userInput = rawInput.toIntOrNull() ?: 0 // Use 0 as a default if conversion fails
+
+            if (isDeposit == true) {
+                depositRunes()
+            } else {
+                withdrawRunes()
+            }
+
+            displayInput()
+        } else {
+            showToast("Please enter a valid number.")
         }
-
-        else {
-            withdrawRunes()
-        }
-
-        displayInput()
     }
 
+    //Toggle for input box display
     private fun displayInput(){
         if (inputBox.visibility == View.INVISIBLE){
             inputBox.visibility = View.VISIBLE
@@ -71,6 +91,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //Button listeners
     private fun setListeners(){
         checkButton.setOnClickListener {
             checkRunes()
@@ -91,11 +112,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //Exit method
     private fun exitApp(){
         finish()
         showToast("Checking Runes: Current Balance - $runeBalance")
     }
 
+    //Notifications
     private fun showToast(message: String) {
         android.widget.Toast.makeText(this, message, android.widget.Toast.LENGTH_SHORT).show()
     }
